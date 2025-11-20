@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-ig-2023-02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victor-magaldi/nodejs-ig-2023-02.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victor-magaldi/nodejs-ig-2023-02/issues"
+  },
+  "homepage": "https://github.com/victor-magaldi/nodejs-ig-2023-02#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
