@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"npx tsx watch src/server.ts",
+    "dev": "npx tsx watch src/server.ts",
+    "lint": "eslint src --ext .ts --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,8 @@
   },
   "homepage": "https://github.com/victor-magaldi/nodejs-ig-2023-02#readme",
   "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
+    "eslint": "^8.57.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   },
