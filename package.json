@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
     "lint": "eslint src --ext .ts --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migration": "cd src && npx knex migrate:make $npm_config_name -x ts"
   },
   "repository": {
     "type": "git",
