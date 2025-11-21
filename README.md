@@ -5,6 +5,12 @@ example for create migration
 ```
   npm run migration --name=create_documents
 ```
+edit your migration in /db/migrations
+
+run migrations
+```
+npm run migrate:latest
+```
 
 
 ## Exmaple migrations Knex
