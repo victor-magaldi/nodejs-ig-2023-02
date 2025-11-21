@@ -3,7 +3,7 @@
 ## NPM script Migration
 example for create migration
 ```
-  npm run migration --name=create_documents
+  npm run migration:create --name=create_documents
 ```
 edit your migration in /db/migrations
 
