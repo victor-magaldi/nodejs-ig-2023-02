@@ -1,13 +1,17 @@
 import fastify from 'fastify'
-import { knex } from './database'
+import { database } from './database'
 
 const app = fastify()
 
 app.get('/hello', async () => {
   console.log('hello 11!')
-  const data = await knex('sqlite_schema').select('*')
+  const data = await database('transactions').insert({
+    id: crypto.randomUUID(),
+    title: 'teste',
+    amount: 1000,
+  })
   console.log('a', data)
-  return 'hellor world'
+  return 'hello world'
 })
 
 app.listen({ port: 3333 }).then(() => {
