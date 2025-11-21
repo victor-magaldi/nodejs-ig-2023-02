@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
     "lint": "eslint src --ext .ts --fix",
-    "migration": "cd src && npx knex migrate:make $npm_config_name -x ts"
+    "migration": "cd src && npx knex migrate:make $npm_config_name -x ts",
+    "migrate:latest":"cd src && npx knex -- migrate:latest"
   },
   "repository": {
     "type": "git",
