@@ -12,6 +12,10 @@ run migrations
 npm run migrate:latest
 ```
 
+Example rollback migration
+```
+npm run migrate:rollback
+```
 
 ## Example migrations Knex
 First configure knext with a ts file 
