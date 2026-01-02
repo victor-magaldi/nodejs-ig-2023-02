@@ -1,13 +1,12 @@
-### hello
-GET http://localhost:3333/hello
+### get Transactions
+GET http://localhost:3333/transactions
 
-### Create a new message
-POST http://localhost:3000/messages
+### Create a new transaction
+POST http://localhost:3333/transactions
 Content-Type: application/json
 
 {
-  "content":"John D"
+  "title":"frelancer 01",
+  "type":"credit",
+  "amount":100
 }
-
-### Get Message by id
-GET http://localhost:3000/messages/733
