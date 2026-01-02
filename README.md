@@ -1,7 +1,7 @@
 # nodejs-ig-2023-02
 
 ## NPM script Migration
-example for create migration
+example for create migration create_documents
 ```
   npm run migration:create --name=create_documents
 ```
@@ -13,7 +13,7 @@ npm run migrate:latest
 ```
 
 
-## Exmaple migrations Knex
+## Example migrations Knex
 First configure knext with a ts file 
 ```
 cd src
