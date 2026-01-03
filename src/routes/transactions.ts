@@ -35,4 +35,12 @@ export async function transactionRoutes(app: FastifyInstance) {
 
     return reply.status(200).send({ transaction })
   })
+
+  app.get('/summary', async (_, reply) => {
+    const summary = await database('transactions')
+      .sum('amount', { as: 'amount' })
+      .first()
+
+    return reply.status(200).send({ summary })
+  })
 }
