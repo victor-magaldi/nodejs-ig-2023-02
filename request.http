@@ -13,3 +13,7 @@ Content-Type: application/json
   "type":"credit",
   "amount":100
 }
+
+### Get summary
+GET http://localhost:3333/transactions/summary
+
