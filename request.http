@@ -1,5 +1,8 @@
-### get Transactions
+### Get Transactions
 GET http://localhost:3333/transactions
+
+### Get Transactions by ID
+GET http://localhost:3333/transactions/57f1bdc1-bdd7-4385-8ef8-83fc8d321e67
 
 ### Create a new transaction
 POST http://localhost:3333/transactions
