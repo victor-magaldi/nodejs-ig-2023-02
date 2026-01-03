@@ -18,21 +18,21 @@ export async function transactionRoutes(app: FastifyInstance) {
     return reply.status(201).send()
   })
 
-  app.get('/', async () => {
-    console.log('hello 11!')
-    // const data = await database('transactions')
-    //   .insert({
-    //     id: crypto.randomUUID(),
-    //     title: 'teste',
-    //     amount: 1000,
-    //   })
-    //   .returning('*')
-    // const data = await database('transactions').select('*')
-    const data = await database('transactions')
-      .where('amount', 1000)
-      .select('*')
+  app.get('/', async (_, reply) => {
+    const transactions = await database('transactions').select('*')
+    return reply.status(200).send({ transactions })
+  })
 
-    console.log('as', data)
-    return 'hello world'
+  app.get('/:id', async (req, reply) => {
+    const getTransactionParamSchema = z.object({
+      id: z.uuid(),
+    })
+    const { id } = getTransactionParamSchema.parse(req.params)
+    const transaction = await database('transactions')
+      .where({ id })
+      .select('*')
+      .first()
+
+    return reply.status(200).send({ transaction })
   })
 }
