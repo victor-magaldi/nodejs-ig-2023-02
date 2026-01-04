@@ -40,27 +40,32 @@ export async function transactionRoutes(app: FastifyInstance) {
     return reply.status(200).send({ transactions })
   })
 
-  app.get('/:id', async (req, reply) => {
+  app.get('/:id', { preHandler: checkSessionIdExists }, async (req, reply) => {
     const getTransactionParamSchema = z.object({
       id: z.uuid(),
     })
     const { id } = getTransactionParamSchema.parse(req.params)
+    const { sessionId } = req.cookies
+
     const transaction = await database('transactions')
-      .where({ id })
+      .where({ id, session_id: sessionId as string })
       .select('*')
       .first()
 
     return reply.status(200).send({ transaction })
   })
 
-  app.get('/summary', async (req, reply) => {
-    const summary = await database('transactions')
-      .sum('amount', { as: 'amount' })
-      .first()
+  app.get(
+    '/summary',
+    { preHandler: checkSessionIdExists },
+    async (req, reply) => {
+      const { sessionId } = req.cookies
 
-    const sessionId = req.cookies.sessionId
-    console.log('🚀 ~ transactionRoutes ~ sessionId:', sessionId)
-
-    return reply.status(200).send({ summary })
-  })
+      const summary = await database('transactions')
+        .where('session_id', sessionId)
+        .sum('amount', { as: 'amount' })
+        .first()
+      return reply.status(200).send({ summary })
+    },
+  )
 }

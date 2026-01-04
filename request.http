@@ -7,7 +7,7 @@ Cookie: {{cookie}}
 
 ### Get Transactions by ID
 // @no-cookie-jar 
-GET http://localhost:3333/transactions/57f1bdc1-bdd7-4385-8ef8-83fc8d321e67
+GET http://localhost:3333/transactions/d58c9cfc-4cfa-4199-9cc4-f6aaa16d60cf
 Cookie: {{cookie}}
 
 ### Create a new transaction
