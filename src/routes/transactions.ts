@@ -4,6 +4,7 @@ import z from 'zod'
 import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 
 export async function transactionRoutes(app: FastifyInstance) {
+  app.addHook('preHandler', checkSessionIdExists) // validate only transaction
   app.post('/', async (req, reply) => {
     const createTransactionSchema = z.object({
       title: z.string(),
@@ -31,7 +32,7 @@ export async function transactionRoutes(app: FastifyInstance) {
     return reply.status(201).send()
   })
 
-  app.get('/', { preHandler: checkSessionIdExists }, async (req, reply) => {
+  app.get('/', async (req, reply) => {
     const { sessionId } = req.cookies
 
     const transactions = await database('transactions')
@@ -40,7 +41,7 @@ export async function transactionRoutes(app: FastifyInstance) {
     return reply.status(200).send({ transactions })
   })
 
-  app.get('/:id', { preHandler: checkSessionIdExists }, async (req, reply) => {
+  app.get('/:id', async (req, reply) => {
     const getTransactionParamSchema = z.object({
       id: z.uuid(),
     })
