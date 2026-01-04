@@ -53,4 +53,73 @@ describe('Transactions Routes', () => {
       }),
     ])
   })
+  it('should be able to get a specific transaction', async () => {
+    const response = await request(app.server)
+      .post('/transactions')
+      .send({
+        title: 'new Transaction',
+        type: 'credit',
+        amount: 3000,
+      })
+      .expect(201)
+    const cookies = response.get('Set-Cookie')
+
+    if (!cookies) {
+      throw new Error('Cookie de sessão não foi definido')
+    }
+
+    const listTransactions = await request(app.server)
+      .get('/transactions')
+      .set('Cookie', cookies)
+      .expect(200)
+    const transactionId: string = listTransactions.body.transactions[0].id
+    console.log('🚀 ~ transactionId:', transactionId)
+
+    const getTransaction = await request(app.server)
+      .get(`/transactions/${transactionId}`)
+      .set('Cookie', cookies)
+      .expect(200)
+
+    expect(getTransaction.body.transaction).toEqual(
+      expect.objectContaining({
+        title: 'new Transaction',
+        amount: 3000,
+      }),
+    )
+  })
+
+  it('should be able get the summary', async () => {
+    const response = await request(app.server)
+      .post('/transactions')
+      .send({
+        title: 'Credit Transaction',
+        type: 'credit',
+        amount: 3000,
+      })
+      .expect(201)
+    const cookies = response.get('Set-Cookie')
+    if (!cookies) {
+      throw new Error('Cookie de sessão não foi definido')
+    }
+    await request(app.server)
+      .post('/transactions')
+      .set('Cookie', cookies)
+      .send({
+        title: 'Debit Transaction',
+        type: 'debit',
+        amount: 1000,
+      })
+      .expect(201)
+
+    const summaryResponse = await request(app.server)
+      .get('/transactions/summary')
+      .set('Cookie', cookies)
+      .expect(200)
+
+    expect(summaryResponse.body?.summary).toEqual(
+      expect.objectContaining({
+        amount: 2000,
+      }),
+    )
+  })
 })
