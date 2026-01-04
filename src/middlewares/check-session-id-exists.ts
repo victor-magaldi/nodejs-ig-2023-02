@@ -5,8 +5,7 @@ export async function checkSessionIdExists(
   reply: FastifyReply,
 ) {
   const sessionId = req.cookies.sessionId
-
-  if (!sessionId) {
+  if (!sessionId && req.method === 'GET') {
     return reply.status(401).send({ error: 'Unauthorized.' })
   }
 }
