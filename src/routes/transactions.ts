@@ -10,10 +10,22 @@ export async function transactionRoutes(app: FastifyInstance) {
       type: z.enum(['credit', 'debit']),
     })
     const { amount, title, type } = createTransactionSchema.parse(req.body)
+
+    let sessionId = req.cookies.sessionId
+
+    if (!sessionId) {
+      sessionId = crypto.randomUUID()
+      reply.cookie('sessionId', sessionId, {
+        path: '/',
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7days
+      })
+    }
+
     await database('transactions').insert({
       id: crypto.randomUUID(),
       title,
       amount: type === 'credit' ? amount : -amount,
+      session_id: sessionId,
     })
     return reply.status(201).send()
   })
@@ -36,10 +48,13 @@ export async function transactionRoutes(app: FastifyInstance) {
     return reply.status(200).send({ transaction })
   })
 
-  app.get('/summary', async (_, reply) => {
+  app.get('/summary', async (req, reply) => {
     const summary = await database('transactions')
       .sum('amount', { as: 'amount' })
       .first()
+
+    const sessionId = req.cookies.sessionId
+    console.log('🚀 ~ transactionRoutes ~ sessionId:', sessionId)
 
     return reply.status(200).send({ summary })
   })
