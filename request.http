@@ -1,19 +1,25 @@
+@cookie = sessionId=79db6e73-eaf1-4af8-9ccc-d36d9d6688ec; Max-Age=604800000; Path=/; SameSite=Lax
+
 ### Get Transactions
 GET http://localhost:3333/transactions
+Cookie: {{cookie}}
 
 ### Get Transactions by ID
 GET http://localhost:3333/transactions/57f1bdc1-bdd7-4385-8ef8-83fc8d321e67
+Cookie: {{cookie}}
 
 ### Create a new transaction
 POST http://localhost:3333/transactions
 Content-Type: application/json
+Cookie: {{cookie}}
 
 {
-  "title":"frelancer 01",
+  "title":"frelancer 03",
   "type":"credit",
-  "amount":100
+  "amount":3000
 }
 
 ### Get summary
 GET http://localhost:3333/transactions/summary
+Cookie: {{cookie}}
 
