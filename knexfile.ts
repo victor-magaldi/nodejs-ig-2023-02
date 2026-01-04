@@ -3,7 +3,7 @@ import type { Knex } from 'knex'
 const config: Knex.Config = {
   client: 'sqlite3',
   connection: {
-    filename: 'db/app.db',
+    filename: process.env.NODE_ENV === 'test' ? 'db/test.db' : 'db/app.db',
   },
   migrations: {
     directory: 'db/migrations',
