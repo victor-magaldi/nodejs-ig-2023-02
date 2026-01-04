@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import { database } from '../database'
 import z from 'zod'
+import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 
 export async function transactionRoutes(app: FastifyInstance) {
   app.post('/', async (req, reply) => {
@@ -30,8 +31,12 @@ export async function transactionRoutes(app: FastifyInstance) {
     return reply.status(201).send()
   })
 
-  app.get('/', async (_, reply) => {
-    const transactions = await database('transactions').select('*')
+  app.get('/', { preHandler: checkSessionIdExists }, async (req, reply) => {
+    const { sessionId } = req.cookies
+
+    const transactions = await database('transactions')
+      .where('session_id', sessionId)
+      .select('*')
     return reply.status(200).send({ transactions })
   })
 
