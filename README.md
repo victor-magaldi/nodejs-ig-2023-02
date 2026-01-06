@@ -1,4 +1,22 @@
-# nodejs-ig-2023-02
+# 💰 Transactions API
+
+API simples para controle de transações financeiras (crédito e débito), desenvolvida em **Node.js** com foco em boas práticas, testes automatizados e isolamento de dados por sessão utilizando cookies.
+
+---
+
+## 🚀 Tecnologias
+
+* **Node.js**
+* **TypeScript**
+* **Fastify**
+* **Knex.js**
+* **SQLite**
+* **Zod**
+* **Vitest**
+* **Supertest**
+* **Fastify Cookie**
+
+---
 
 ## NPM script Migration
 example for create migration create_documents
