@@ -3,6 +3,7 @@
 
 # 
 db/*.db
+build
 
 ### Node ###
 # Logs
