@@ -9,7 +9,10 @@
     "migration:create": "npx knex migrate:make $npm_config_name -x ts",
     "migrate:latest": "npx knex -- migrate:latest",
     "migrate:rollback": "npx knex -- migrate:rollback",
-    "test": "vitest"
+    "test": "vitest",
+    "build":"tsup src --out-dir build",
+    "start": "node build/server.js"
+
   },
   "repository": {
     "type": "git",
@@ -27,6 +30,7 @@
     "@types/supertest": "^6.0.3",
     "eslint": "^8.57.1",
     "supertest": "^7.1.4",
+    "tsup": "^8.5.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"
