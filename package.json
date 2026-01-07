@@ -9,13 +9,12 @@
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
     "lint": "eslint src --ext .ts --fix",
-    "migration:create": "npx knex migrate:make $npm_config_name -x ts",
-    "migrate:latest": "npx knex -- migrate:latest",
-    "migrate:rollback": "npx knex -- migrate:rollback",
+    "migration:create": "NODE_OPTIONS='--import tsx' npx knex migrate:make $npm_config_name -x ts",
+    "migrate:latest": "NODE_OPTIONS='--import tsx' npx knex -- migrate:latest",
+    "migrate:rollback": "NODE_OPTIONS='--import tsx' npx knex -- migrate:rollback",
     "test": "vitest",
     "build":"tsup src --out-dir build",
     "start": "node build/server.js"
-
   },
   "repository": {
     "type": "git",

@@ -1,29 +1,36 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
     "target": "es2022",
     "lib": [
       "es2022"
     ],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "rootDir": "./",
+    "outDir": "./dist",
     "types": [
       "node"
     ],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "jsx": "react-jsx",
     "verbatimModuleSyntax": false,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true
-  }
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src/**/*",
+    "env/**/*",
+    "knexfile.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
