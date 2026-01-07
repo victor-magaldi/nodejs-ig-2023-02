@@ -13,7 +13,7 @@
     "migrate:latest": "NODE_OPTIONS='--import tsx' npx knex -- migrate:latest",
     "migrate:rollback": "NODE_OPTIONS='--import tsx' npx knex -- migrate:rollback",
     "test": "vitest",
-    "build":"tsup src --out-dir build",
+    "build": "tsup src --out-dir build",
     "start": "node build/server.js"
   },
   "repository": {
@@ -42,6 +42,7 @@
     "dotenv": "^17.2.3",
     "fastify": "^5.6.2",
     "knex": "^3.1.0",
+    "pg": "^8.16.3",
     "sqlite3": "^5.1.7",
     "zod": "^4.3.4"
   }
