@@ -19,7 +19,7 @@ const _env = envSchema.safeParse(process.env)
 if (!_env.success) {
   const errorTree = treeifyError(_env.error)
   console.error('Invalid env variables:', JSON.stringify(errorTree))
-  throw new Error('Invalid env variables:')
+  throw new Error('Invalid env variables.')
 }
 
 export const env = _env.data
